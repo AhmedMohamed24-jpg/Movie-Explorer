@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("../imgas/space.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed; /* لجعل الخلفية ثابتة مع النزول */
+    min-height: 100vh;
+    display: flex;
+    align-items: center; /* لتوسيط المحتوى عمودياً في الشاشات الكبيرة */
+}
+
+/* Container */
+.all {
+    width: 90%;
+    max-width: 1200px; /* أقصى عرض للكروت مجتمعة */
+    margin: 80px auto;
+    
+    /* جعل العناصر متجاوبة تلقائياً مع جميع الشاشات */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Card Styling */
+.card {
+    height: 500px;
+    border-radius: 20px; /* نسبة مئوية مثل 7% قد تسبب تشوه، البيكسل أفضل هنا */
+    overflow: hidden;
+    position: relative;
+    background-color: #000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* إضافة ظل جمالي */
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* لضمان ملء الصورة للكارت دون تشوه */
+    transition: 0.6s ease;
+}
+
+.card:hover .image {
+    transform: scale(1.2);
+}
+
+/* Overlay Styling */
+.overLay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    
+    /* توزيع العناصر داخل الكارت (الزر فوق والنص تحت) */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    transition: 0.5s ease;
+}
+
+/* Content Styling & Animation */
+.content {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+}
+
+.card:hover .content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.content h2 {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.content p {
+    text-align: center;
+    line-height: 1.6;
+    font-size: 15px;
+    color: #ddd;
+}
+
+/* Button Styling & Animation */
+.bot {
+    width: 150px;
+    height: 45px;
+    color: white;
+    font-size: 18px;
+    background-color: #e50914; /* أحمر أقرب لنتفليكس */
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transform: translateY(-80px);
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+}
+
+.card:hover .bot {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.bot:hover {
+    background-color: #b20710;
+    transform: scale(1.05); /* تكبير الزر قليلاً عند المرور عليه */
+}
+
+/* Media Query للشاشات الصغيرة جداً */
+@media (max-width: 400px) {
+    .card {
+        height: 400px; /* تقليل طول الكارت في الموبايلات الصغيرة */
+    }
+}
